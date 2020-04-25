@@ -56,8 +56,8 @@ class CurrencyExchangeRate
         if (empty($path_to_cache_file)){
             throw new \Exception('Path to cache file not specified.');
         }
-        $this->api_access_key = $api_access_key ?? '';
-        $this->path_to_cache_file = $path_to_cache_file ?? '';
+        $this->api_access_key = $api_access_key;
+        $this->path_to_cache_file = $path_to_cache_file;
         $this->cache = new Cache($this->path_to_cache_file);
         $this->precision = 6;
     }
@@ -119,8 +119,8 @@ class CurrencyExchangeRate
             ) : false;
         }
 
-        if (!isset($rates['USD' . $currencyFrom])
-            || !isset($rates['USD' . $currencyTo])
+        if (!isset($rates['USD' . $currencyFrom]) ||
+            !isset($rates['USD' . $currencyTo])
         ) {
             throw new \Exception('Data format error.');
         }
